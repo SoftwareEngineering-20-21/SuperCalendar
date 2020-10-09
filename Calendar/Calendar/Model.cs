@@ -32,7 +32,6 @@ namespace Calendar
         public string description { get; set; }
         public DateTime start { get; set; }
         public DateTime end { get; set; }
-        //public string emails { get; set; }
         public IEnumerable<UserEvent> users { get; set; }
 
     }
