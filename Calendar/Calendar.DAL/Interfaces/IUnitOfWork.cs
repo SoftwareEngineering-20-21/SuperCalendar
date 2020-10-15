@@ -1,7 +1,8 @@
-﻿using NLayerApp.DAL.Entities;
+﻿using Calendar.DAL.Entities;
 using System;
 
-namespace NLayerApp.DAL.Interfaces
+
+namespace Calendar.DAL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

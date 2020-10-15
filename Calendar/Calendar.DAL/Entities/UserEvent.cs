@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using Calendar.DAL.Abstractions;
 namespace Calendar.DAL.Entities
 {
-    class UserEvent
-    {
-        public int id { get; set; }
+    public class UserEvent : BaseEntity
+    { 
         public int user_id { get; set; }
         public User User { get; set; }
 

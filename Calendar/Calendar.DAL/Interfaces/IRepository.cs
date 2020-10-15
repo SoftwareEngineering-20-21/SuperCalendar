@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NLayerApp.DAL.Interfaces
+namespace Calendar.DAL.Interfaces
 {
     public interface IRepository<T> where T : class
     {

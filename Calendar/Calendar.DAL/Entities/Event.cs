@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
+using Calendar.DAL.Abstractions;
 namespace Calendar.DAL.Entities
 {
-    class Event
+    public class Event : BaseEntity
     {
 
-        public int id { get; set; }
+        
         public string subject { get; set; }
         public string description { get; set; }
         public DateTime start { get; set; }

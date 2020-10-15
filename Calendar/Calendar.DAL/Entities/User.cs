@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Calendar.DAL.Abstractions;
 
 namespace Calendar.DAL.Entities
 {
-    class User
+    public class User: BaseEntity
     {
-        public int id { get; set; }
+       
         public string username { get; set; }
         public string email { get; set; }
         public string password { get; set; }
