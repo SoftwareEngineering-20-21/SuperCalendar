@@ -36,7 +36,29 @@ namespace Calendar.BLL.Services
             }
         }
 
-        
+        public bool SignUp(string Fullname, string Email, string Password)
+        {
+            var existUser = unitOfWork.Repository<User>().Get().FirstOrDefault(x => x.email == Email);
+            if (existUser == null)
+            {
+                User user = new User
+                {
+                    username = Fullname,
+                    email = Email,
+                    password = Password,
+                    events = new List<UserEvent>()
+                };
+                unitOfWork.Repository<User>().Update(user);
+                unitOfWork.Save();
+                currentUser = user;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 
 }
