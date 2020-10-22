@@ -1,53 +1,70 @@
-﻿using Calendar.DAL.Entities;
-using Calendar.DAL.Context;
+﻿using Calendar.DAL.Context;
 using Calendar.DAL.Abstractions;
-using Calendar.DAL.Entities;
+using System.Threading.Tasks;
 using Calendar.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Calendar.DAL.Repositories
 {
-    class UserRepository : IRepository<User>
+    public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private CalendarContext db;
-
-        public UserRepository(CalendarContext context)
+        private readonly CalendarContext context;
+        private readonly DbSet<T> dbSet;
+        public Repository()
         {
-            this.db = context;
+            this.context = new CalendarContext();
+            dbSet = context.Set<T>();
+            dbSet.Load();
+        }
+        public Repository(CalendarContext context)
+        {
+            this.context = context;
+            dbSet = context.Set<T>();
+        }
+        public IEnumerable<T> Get()
+        {
+            return dbSet.ToList();
         }
 
-        public IEnumerable<User> GetAll()
+        public T Get(int id)
         {
-            return db.Users;
+            return dbSet.FirstOrDefault(x => x.Id == id);
         }
-
-        public User Get(int id)
+        public IEnumerable<T> Get(Func<T, bool> predicate)
         {
-            return db.Users.Find(id);
+            return dbSet.Where(predicate).ToList();
         }
-
-        public void Create(User user)
+        public void Delete(T entity)
         {
-            db.Users.Add(user);
-        }
-
-        public void Update(User user)
-        {
-            db.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-        }
-
-        public IEnumerable<User> Find(Func<User, Boolean> predicate)
-        {
-            return db.Users.Where(predicate).ToList();
+            dbSet.Remove(entity);
         }
 
         public void Delete(int id)
         {
-            User user = db.Users.Find(id);
-            if (user != null)
-                db.Users.Remove(user);
+            T elem = dbSet.Find(id);
+            if (elem != null)
+            {
+                dbSet.Remove(elem);
+            }
+        }
+
+        public void Update(T entity)
+        {
+            dbSet.Update(entity);
+        }
+
+        public void Save()
+        {
+            context.SaveChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+            await context.SaveChangesAsync();
         }
     }
+
 }
