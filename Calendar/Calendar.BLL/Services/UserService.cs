@@ -24,19 +24,21 @@ namespace Calendar.BLL.Services
         public bool Login(string Email, string Password)
         {
             User user = unitOfWork.Repository<User>().Get().FirstOrDefault(x => x.email == Email);
+            bool isLoged = false;
             if (user != null && (Password== user.password))
             {
                 currentUser = user;
-                return true;
+                isLoged = true;
             }
-            {
-                return false;
-            }
+            return isLoged;
+            
         }
 
         public bool SignUp(string Fullname, string Email, string Password)
         {
             var existUser = unitOfWork.Repository<User>().Get().FirstOrDefault(x => x.email == Email);
+            bool isSigned = false;
+
             if (existUser == null)
             {
                 User user = new User
@@ -49,12 +51,11 @@ namespace Calendar.BLL.Services
                 unitOfWork.Repository<User>().Update(user);
                 unitOfWork.Save();
                 currentUser = user;
-                return true;
+                isSigned = true;           
             }
-            else
-            {
-                return false;
-            }
+                    
+                return isSigned;
+            
         }
 
     }
