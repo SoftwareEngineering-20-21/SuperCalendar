@@ -16,8 +16,6 @@ namespace Calendar.BLL.Services
         private User currentUser = null;
         private readonly IUnitOfWork unitOfWork;
 
-        public object BCrypt { get; private set; }
-
         public UserService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
