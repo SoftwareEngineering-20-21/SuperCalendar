@@ -16,9 +16,9 @@ namespace Calendar.BLL.Services
         private User currentUser = null;
         private readonly IUnitOfWork unitOfWork;
 
-        public UserService(IUnitOfWork unitOfWork)
+        public UserService()//IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+           // this.unitOfWork = unitOfWork;
         }
 
         public bool Login(string Email, string Password)
