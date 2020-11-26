@@ -26,14 +26,17 @@ namespace Calendar
         {
             InitializeComponent();
         }
-      
+        private void CencelButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+        }
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             string fullname = NameTextBox.Text;
             string email = EmailTextBox.Text;
             string password = PasswordBox.Password;
-            string repeatPassword = Password1Box.Password;
-            if (password == repeatPassword)
+            string checkpassword = Password1Box.Password;
+            if (password == checkpassword)
             {
                 UserService userService = new UserService();
                 userService.SignUp(fullname, email, password);

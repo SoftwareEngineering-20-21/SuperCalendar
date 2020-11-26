@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calendar"
         mc:Ignorable="d"
-        Title="Registration" Height="450" Width="450">
+        Title="Registration" Height="500" Width="450">
     <StackPanel>
         <Label Content="Реєстрація" HorizontalAlignment="Center" FontSize="32"></Label>
         <Label Content="Ім'я та прізвище"  HorizontalAlignment="Center" FontSize="15" RenderTransformOrigin="0.492,-0.676"></Label>
@@ -18,6 +18,7 @@
         <Label Content="Введіть пароль ще раз"  HorizontalAlignment="Center" FontSize="15"></Label>
         <PasswordBox  x:Name="Password1Box" FontSize="20" Margin="105,0" Background="LightGray"/>
         <Button x:Name="RegisterButton" Content="Зареєструватись" HorizontalAlignment="Center" Margin="146,30,160,0" VerticalAlignment="Top" Height="36" Width="136" FontSize="16" Click="RegisterButton_Click"/>
+        <Button x:Name="Cencel" Content="Повернутись" HorizontalAlignment="Center" Margin="147,30,160.2,0" VerticalAlignment="Top" Height="36" Width="136" FontSize="16" Click="CencelButton_Click"/>
 
 
 

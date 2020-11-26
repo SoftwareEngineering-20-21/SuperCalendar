@@ -14,12 +14,8 @@ namespace Calendar.BLL.Services
     public class UserService : IUserService
     {
         private User currentUser = null;
-        private readonly IUnitOfWork unitOfWork;
+        public readonly IUnitOfWork unitOfWork = null;
 
-        public UserService()//IUnitOfWork unitOfWork)
-        {
-           // this.unitOfWork = unitOfWork;
-        }
 
         public bool Login(string Email, string Password)
         {
@@ -36,24 +32,27 @@ namespace Calendar.BLL.Services
 
         public bool SignUp(string Fullname, string Email, string Password)
         {
-            var existUser = unitOfWork.Repository<User>().Get().FirstOrDefault(x => x.email == Email);
-            bool isSigned = false;
 
-            if (existUser == null)
-            {
-                User user = new User
+            bool isSigned = false;
+            
+                var existUser = unitOfWork.Repository<User>().Get().FirstOrDefault(x => x.email == Email);
+
+                if (existUser == null)
                 {
-                    username = Fullname,
-                    email = Email,
-                    password = Password,
-                    events = new List<UserEvent>()
-                };
-                unitOfWork.Repository<User>().Update(user);
-                unitOfWork.Save();
-                currentUser = user;
-                isSigned = true;           
-            }
-                    
+                    User user = new User
+                    {
+                        username = Fullname,
+                        email = Email,
+                        password = Password,
+                        events = new List<UserEvent>()
+                    };
+                    unitOfWork.Repository<User>().Update(user);
+                    unitOfWork.Save();
+                    currentUser = user;
+                    isSigned = true;
+                }
+
+            
                 return isSigned;
             
         }

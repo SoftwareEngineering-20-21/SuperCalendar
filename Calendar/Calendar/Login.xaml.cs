@@ -26,6 +26,10 @@ namespace Calendar
             InitializeComponent();
         }
 
+        private void CencelButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+        }
         private void LogInButton_Click(object sender, RoutedEventArgs e)
         {
           
