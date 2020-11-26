@@ -1,4 +1,5 @@
 ﻿using System;
+using Ninject;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,11 @@ namespace Calendar
     /// </summary>
     public partial class Registration : Window
     {
-        public Registration()
+        private IKernel kernel;
+        public Registration(IKernel kernel)
         {
             InitializeComponent();
+            this.kernel = kernel;
         }
         private void CencelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -38,8 +41,8 @@ namespace Calendar
             string checkpassword = Password1Box.Password;
             if (password == checkpassword)
             {
-                UserService userService = new UserService();
-                userService.SignUp(fullname, email, password);
+                IUserService userService = kernel.Get<IUserService>();
+                var user = userService.SignUp(fullname, email, password);
                 MessageBox.Show("Registration successful!", "SuperCalendar", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
