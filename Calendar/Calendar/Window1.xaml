@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid>
-        <Calendar HorizontalAlignment="Left" Margin="39,10,0,0" VerticalAlignment="Top" Height="306" Width="360"/>
-        <Button Content="Додати подію" HorizontalAlignment="Left" Margin="603,51,0,0" VerticalAlignment="Top" Width="111" Height="32" Click="Button_Click_1"/>
-        <Button Content="Видалити подію" HorizontalAlignment="Left" Margin="603,109,0,0" VerticalAlignment="Top" Width="111" Height="37" Click="Button_Click"/>
+        <Calendar HorizontalAlignment="Left" Margin="39,10,0,0" VerticalAlignment="Top" Height="500" Width="500"/>
+        <Button Content="Додати подію" HorizontalAlignment="Left" Margin="603,51,0,0" VerticalAlignment="Top" Width="111" Height="32" Click="Add_Event"/>
+        <Button Content="Видалити подію" HorizontalAlignment="Left" Margin="603,109,0,0" VerticalAlignment="Top" Width="111" Height="37" Click="Delete_Event"/>
 
     </Grid>
 </Window>

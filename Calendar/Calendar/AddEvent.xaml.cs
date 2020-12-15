@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace Calendar
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for AddEvent.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class AddEvent : Window
     {
-        public Window1()
+        public AddEvent()
         {
             InitializeComponent();
-        }
-
-        private void Add_Event(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Delete_Event(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
