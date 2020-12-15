@@ -38,5 +38,13 @@ namespace Calendar
             logIn.ShowDialog();
             logIn.Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 W1 = new Window1();
+            W1.ShowDialog();
+            W1.Close();
+            
+        }
     }
 }
