@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calendar.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace Calendar
     /// </summary>
     public partial class MainWindow : Window
     {
+        private User user;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +47,9 @@ namespace Calendar
             Window1 W1 = new Window1(this.user);
             W1.ShowDialog();
             W1.Close();
-            
+            SystemCommands.CloseWindow(this);
+
+
         }
     }
 }

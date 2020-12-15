@@ -26,9 +26,6 @@ namespace Calendar
         public Window1(User user)
         {
             this.user = user;
-
-            CalendarContext con = new CalendarContext();
-            EventService eventService = new EventService(con);
             InitializeComponent();
 
         }

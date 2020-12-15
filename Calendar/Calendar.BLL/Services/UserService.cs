@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Calendar.BLL.Interfaces;
+using Calendar.DAL.Context;
 using Calendar.DAL.Entities;
 using Calendar.DAL.Interfaces;
 using Calendar.DAL.Repositories;
@@ -14,7 +15,8 @@ namespace Calendar.BLL.Services
     public class UserService : IUserService
     {
         private User currentUser = null;
-        public readonly IUnitOfWork unitOfWork = null;
+        public readonly UnitOfWork unitOfWork;
+        private CalendarContext _context;
 
 
         public bool Login(string Email, string Password)
@@ -34,23 +36,26 @@ namespace Calendar.BLL.Services
         {
 
             bool isSigned = false;
-            
-                var existUser = unitOfWork.Repository<User>().Get().FirstOrDefault(x => x.email == Email);
-
-                if (existUser == null)
+            try
+            {
+                User user = new User
                 {
-                    User user = new User
-                    {
-                        username = Fullname,
-                        email = Email,
-                        password = Password,
-                        events = new List<UserEvent>()
-                    };
-                    unitOfWork.Repository<User>().Update(user);
-                    unitOfWork.Save();
-                    currentUser = user;
-                    isSigned = true;
-                }
+                    username = Fullname,
+                    email = Email,
+                    password = Password,
+                    events = new List<UserEvent>()
+                };
+                unitOfWork.Repository<User>().Update(user);
+                unitOfWork.Save();
+                currentUser = user;
+                isSigned = true;
+
+            }
+            catch (Exception)
+            {
+
+            }
+                   
 
             
                 return isSigned;

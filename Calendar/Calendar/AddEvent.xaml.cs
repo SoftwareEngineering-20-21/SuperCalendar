@@ -23,15 +23,12 @@ namespace Calendar
     /// </summary>
     public partial class AddEvent : Window
     {
-
         User user;
         public AddEvent(User user)
         {
             this.user = user;
             InitializeComponent();
         }
-
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string name = Name.Text;
@@ -42,29 +39,15 @@ namespace Calendar
                 try
                 {
                     Event ev = new Event { subject = name, description = description, start = DateTime.ParseExact(startAt, "dd.mm.yyyy", CultureInfo.CurrentCulture), end = DateTime.ParseExact(endAt, "dd.mm.yyyy", CultureInfo.CurrentCulture) };
-                    CalendarContext con = new CalendarContext();
-                    EventService usev = new EventService(con);
-                    usev.Save(ev, this.user.Id);
-                    Window1 w1 = new Window1(this.user);
-                    w1.Show();
+                    
+                    EventService usev = new EventService();
+                    usev.CreateEvent(ev);
                     this.Close();
                 }
-                catch (PostgresException pexp)
+                catch (Exception pexp)
                 {
                     MessageBox.Show("Error has been occured\nMessage = " + pexp.Message);
-                }
-                catch (EntityException eexp)
-                {
-                    MessageBox.Show("Error has been occured\nMessage = " + eexp.Message);
-                }
-                catch (Exception exp)
-                {
-                    MessageBox.Show("Error has been occured\nMessage = " + exp.Message);
-                }
-            
-        }
-    
-       
-            
+                }            
+        }       
     }
 }
