@@ -41,7 +41,7 @@ namespace Calendar
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window1 W1 = new Window1();
+            Window1 W1 = new Window1(this.user);
             W1.ShowDialog();
             W1.Close();
             

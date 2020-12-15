@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Calendar.DAL.Interfaces;
+using Calendar.DAL.Context;
+using System.Linq;
 
 namespace Calendar.BLL.Services
 {
@@ -16,7 +18,32 @@ namespace Calendar.BLL.Services
         {
             this.unitOfWork = unitOfWork;
         }
+        private CalendarContext _context;
 
+        public EventService(CalendarContext context)
+        {
+            _context = context;
+        }
+
+        public Event Save(Event e)
+        {
+            var eventToSave = _context.Events.Add(e);
+            _context.SaveChanges();
+
+            return eventToSave.Entity;
+        }
+        public void Save(Event e, long userId)
+        {
+            User user = _context.Users.First(p => p.Id == userId);
+
+            var userEvent = new UserEvent();
+            userEvent.Event = e;
+            userEvent.User = user;
+            _context.UserEvents.Add(userEvent);
+            _context.Events.Add(e);
+            _context.SaveChanges();
+
+        }
         public bool CreateEvent(Event events)
         {
             bool isCreated = false;

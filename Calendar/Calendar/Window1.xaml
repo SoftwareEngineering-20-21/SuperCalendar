@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calendar"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
-    <Grid>
-        <Calendar HorizontalAlignment="Left" Margin="39,10,0,0" VerticalAlignment="Top" Height="500" Width="500"/>
-        <Button Content="Додати подію" HorizontalAlignment="Left" Margin="603,51,0,0" VerticalAlignment="Top" Width="111" Height="32" Click="Add_Event"/>
-        <Button Content="Видалити подію" HorizontalAlignment="Left" Margin="603,109,0,0" VerticalAlignment="Top" Width="111" Height="37" Click="Delete_Event"/>
+        Title="Window1" Height="358" Width="646">
+    <Grid Margin="0,0,84,83">
+        <Calendar HorizontalAlignment="Left" Margin="-12,74,0,-330" VerticalAlignment="Top" Height="500" Width="500"/>
+        <Button Content="Додати подію" HorizontalAlignment="Left" Margin="426,86,0,0" VerticalAlignment="Top" Width="111" Height="32" Click="Add_Event"/>
+        <Button Content="Видалити подію" HorizontalAlignment="Left" Margin="426,162,0,0" VerticalAlignment="Top" Width="111" Height="37" Click="Delete_Event"/>
 
     </Grid>
 </Window>

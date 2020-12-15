@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Calendar.BLL.Services;
+using Calendar.DAL.Context;
+using Calendar.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +22,21 @@ namespace Calendar
     /// </summary>
     public partial class Window1 : Window
     {
-        public Window1()
+        User user;
+        public Window1(User user)
         {
-            InitializeComponent();
-        }
+            this.user = user;
 
+            CalendarContext con = new CalendarContext();
+            EventService eventService = new EventService(con);
+            InitializeComponent();
+
+        }
         private void Add_Event(object sender, RoutedEventArgs e)
         {
-
+            AddEvent a = new AddEvent(this.user);
+            a.ShowDialog();
+            a.Close();
         }
 
         private void Delete_Event(object sender, RoutedEventArgs e)
