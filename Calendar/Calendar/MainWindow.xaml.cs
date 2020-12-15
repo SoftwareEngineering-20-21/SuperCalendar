@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Ninject;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,17 +20,14 @@ namespace Calendar
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IKernel kernel;
-
-        public MainWindow(IKernel kernel)
+        public MainWindow()
         {
             InitializeComponent();
-            this.kernel = kernel;
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            Registration register = new Registration(kernel);
+            Registration register = new Registration();
             register.ShowDialog();
             register.Close();
         }

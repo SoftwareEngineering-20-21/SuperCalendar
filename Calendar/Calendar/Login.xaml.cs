@@ -1,5 +1,4 @@
 ﻿using System;
-using Ninject;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Calendar.BLL.Services;
 using Calendar.DAL.Interfaces;
-using Calendar.BLL.Interfaces;
 
 namespace Calendar
 {
@@ -23,12 +21,9 @@ namespace Calendar
     /// </summary>
     public partial class Login : Window
     {
-        private IKernel kernel;
-
         public Login()
         {
             InitializeComponent();
-            this.kernel = kernel;
         }
 
         private void CencelButton_Click(object sender, RoutedEventArgs e)
@@ -40,8 +35,8 @@ namespace Calendar
           
             string login = LogTextBox.Text;
             string password = PasswordBox.Password;
-
-            IUserService userService = kernel.Get<IUserService>();
+          
+            UserService userService = new UserService();
             userService.Login(login, password);
            
            

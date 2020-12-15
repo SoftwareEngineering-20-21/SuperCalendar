@@ -13,14 +13,10 @@ namespace Calendar.BLL.Services
 
     public class UserService : IUserService
     {
-        private User currentUser;
+        private User currentUser = null;
         public readonly IUnitOfWork unitOfWork = null;
 
-        public UserService(IUnitOfWork unitOfWork)
-        {
-            this.unitOfWork = unitOfWork;
-            currentUser = null;
-        }
+
         public bool Login(string Email, string Password)
         {
             User user = unitOfWork.Repository<User>().Get().FirstOrDefault(x => x.email == Email);
